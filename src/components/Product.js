@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import apiServices from "../services/apiServices";
+//import apiServices from "../services/apiServices";
 import "../styles/Product.css";
-
+function onClickReserve() {
+    
+}
 const profilePic = "./images/ess-logo.png"
 export default class Product extends Component {
+
+    
   constructor(props) {
     super(props);
-    this.retrieveProducts = this.retrieveProducts.bind(this);
+    //this.retrieveProducts = this.retrieveProducts.bind(this);
     this.refreshList = this.refreshList.bind(this);
 
     this.state = {
@@ -17,10 +21,10 @@ export default class Product extends Component {
   }
 
   componentDidMount() {
-    this.retrieveProducts();
+    //this.retrieveProducts();
   }
 
-
+/*
   retrieveProducts() {
     apiServices.getAll()
       .then(response => {
@@ -33,6 +37,7 @@ export default class Product extends Component {
         console.log(e);
       });
   }
+  */
 
   refreshList() {
     this.retrieveProducts();
@@ -41,7 +46,7 @@ export default class Product extends Component {
       currentIndex: -1
     });
   }
-
+/*
   removeAllPosts() {
     apiServices.deleteAll()
       .then(response => {
@@ -52,7 +57,7 @@ export default class Product extends Component {
         console.log(e);
       });
   }
-
+*/
 
   render() {
     const {products} = this.state;
@@ -66,7 +71,7 @@ export default class Product extends Component {
                     
                   <div class="product_content">
                     <div class="product_text_Container">
-                        <div class="username">
+                        <div class="product_title">
                             <h3>{ProductList.title}</h3>
                         </div>
                         <div class="product_description">
@@ -74,6 +79,7 @@ export default class Product extends Component {
                             <p>{ProductList.description}</p>
                         </div>
                     </div>
+                    <button title="Reserve product" onPress={() => onClickReserve}/>
                   </div>
                 </div>
               ))}

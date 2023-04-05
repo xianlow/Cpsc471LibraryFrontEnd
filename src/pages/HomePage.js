@@ -1,6 +1,6 @@
 import React from "react"
 import {useNavigate} from "react-router-dom";
-import ProductSearch from "../components/ProductSearch"
+import ProductSearchGuest from "../components/ProductSearchGuest"
 import "../styles/HomePage.css"
 function Home(){
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Home(){
             //<Engineering />
             */}
             <div>
-                <ProductSearch />
+                <ProductSearchGuest />
                 <button onClick={navToLogin}>Log In</button>
             </div>
         </div>

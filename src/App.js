@@ -2,6 +2,7 @@ import './styles/App.css';
 import Home from './pages/HomePage';
 import Login from './components/LoginPage'
 import Product from './components/Product'
+import ProductGuest from './components/ProductGuest';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
           <Route exact path="" element={<Home />}></Route>
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path='/login' element={<Login />} />
-          <Route path='/product' element={<Product />} />
+          <Route path='/product' element={<ProductGuest />} />
           
             {
                   //<Route exact path='/adminpage' element={<AdminPage/>}/>
