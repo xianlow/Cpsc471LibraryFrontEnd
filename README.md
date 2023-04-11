@@ -1,14 +1,23 @@
 # App Current hard coded values
 
 Sign up is checking for values using values 1234 and if 1234 is typed, will give alert saying id is registered
+
 Login for admin is using "admin" as the username id
+
 Login for employees is using "emp" as the username id
+
 Login for registered user is using "regis" as the username id
+
 Product Guest has values entered manually but need to check for db values
+
 Product also has values entered manually and need to check for db values
+
 ProductEmp also needs values and uses db functionalities
+
 CustomerSearch/CustomerSearchAdmEmp needs db functionalities
+
 Overdue needs db functionalities to search
+
 PickupDates need db functionalities to search
 
 CreateNewProduct needs to use the db so we can add items into the database
