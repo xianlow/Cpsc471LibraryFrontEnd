@@ -1,31 +1,35 @@
 import React, { Component } from "react";
 //import apiServices from "../services/apiServices";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import "../styles/Product.css";
 function onClickReserve() {
     
 }
-const profilePic = "./images/ess-logo.png"
 export default class Product extends Component {
 
     
   constructor(props) {
     super(props);
-    //this.retrieveProducts = this.retrieveProducts.bind(this);
+    this.retrieveProducts = this.retrieveProducts.bind(this);
     this.refreshList = this.refreshList.bind(this);
 
     this.state = {
-      products: [],
+      books: [],
+      movies: [],
+      journal: [],
       currentProduct: null,
-      currentIndex: -1,
+      currentIndex: -1
     };
   }
 
   componentDidMount() {
-    //this.retrieveProducts();
+    this.retrieveProducts();
   }
 
-/*
+
   retrieveProducts() {
+    /*
     apiServices.getAll()
       .then(response => {
         this.setState({
@@ -36,8 +40,42 @@ export default class Product extends Component {
       .catch(e => {
         console.log(e);
       });
+      */
+      this.setState({
+        books: [{
+          "title": "TitleVal",
+          "author": "theAuthor",
+          "status": false.toString()
+        },
+        {
+          "title": "Title2",
+          "author": "theAuthor2",
+          "status": true.toString()
+        }],
+  
+        movies: [{
+          "title": "TitleVal",
+          "director": "theDirector",
+          "status": false.toString()
+        },
+        {
+          "title": "Title2",
+          "director": "theDirector2",
+          "status": true.toString()
+        }],
+        journal: [{
+          "title": "TitleVal",
+          "author": "theAuthor",
+          "status": false.toString()
+        },
+        {
+          "title": "Title2",
+          "author": "theAuthor2",
+          "status": true.toString()
+        }]
+      })
   }
-  */
+  
 
   refreshList() {
     this.retrieveProducts();
@@ -46,45 +84,89 @@ export default class Product extends Component {
       currentIndex: -1
     });
   }
-/*
-  removeAllPosts() {
-    apiServices.deleteAll()
-      .then(response => {
-        console.log(response.data);
-        this.refreshList();
-      })
-      .catch(e => {
-        console.log(e);
-      });
+
+  confirm = () => {
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure you want to book this product?",
+      buttons: [{
+        label: "Yes",
+        onClick: () => alert("You have booked this")
+      },
+      {
+        label: "No",
+        onClicK: () => alert("You have not booked")
+      }]
+    })
   }
-*/
 
-  render() {
-    const {products} = this.state;
+render() {
+  const { books, movies, journal } = this.state;
 
-    return (
+  return (
 
-          <div className="list-group">
-            {products &&
-              products.map((ProductList) => (
-                <div className="product">
-                    
-                  <div class="product_content">
-                    <div class="product_text_Container">
-                        <div class="product_title">
-                            <h3>{ProductList.title}</h3>
-                        </div>
-                        <div class="product_description">
-                            
-                            <p>{ProductList.description}</p>
-                        </div>
-                    </div>
-                    <button title="Reserve product" onPress={() => onClickReserve}/>
-                  </div>
+    <div className="list-group">
+      <h1>Books</h1>
+      {journal &&
+        books.map((BookList) => (
+          <div className="books">
+
+            <div class="book_content">
+              <div class="book_text_container">
+                <div class="book_title">
+                  <h3>{BookList.title}</h3>
+                  
                 </div>
-              ))}
+                <div class="book_author">
+                  <p>{BookList.author}</p>
+                </div>
+                <button onClick={this.confirm}>Confirm reservation</button> 
+              </div>
+            </div>
+            
+          </div>
+        ))}
+        <h1>Movies</h1>
+        {movies &&
+        movies.map((moviesList) => (
+          <div className="movies">
+
+            <div class="movies_content">
+              <div class="movies_text_container">
+                <div class="movies_title">
+                  <h3>{moviesList.title}</h3>
+                  
+                </div>
+                <div class="movies_director">
+                  <p>{moviesList.director}</p>
+                </div>
+                <button onClick={this.confirm}>Confirm reservation</button> 
+              </div>
+            </div>
           </div>
           
-    );
-  }
+        ))}
+        <h1>Journals</h1>
+        {journal &&
+        journal.map((JournalList) => (
+          <div className="journal">
+
+            <div class="journal_content">
+              <div class="journal_text_container">
+                <div class="journal_title">
+                  <h3>{JournalList.title}</h3>
+                  
+                </div>
+                <div class="journal_author">
+                  <p>{JournalList.author}</p>
+                </div>
+                <button onClick={this.confirm}>Confirm reservation</button> 
+              </div>
+            </div>
+          </div>
+        ))}
+    </div>
+
+  );
+}
 }

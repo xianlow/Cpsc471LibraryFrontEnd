@@ -3,13 +3,12 @@ import {useNavigate} from "react-router-dom";
 import "../styles/ProductSearch.css"
 
 
-
-function ProductSearch() {
+function ProductSearchEmp() {
     const [productVal, setProductVal] = useState("");
     const navigate = useNavigate();
     const navToProduct = () => {
         navigate({
-            pathname: './productregis',
+            pathname: './productsearch',
             search: `?${productVal}`
         });
 
@@ -17,14 +16,9 @@ function ProductSearch() {
 
     const checkProduct = (e) => {
         e.preventDefault();
-        /*
-        productVal is the value being searched
-        
 
-        Add product functionality here!!!!
-
-        */
         navToProduct();
+        
     }
 
     return (
@@ -35,11 +29,11 @@ function ProductSearch() {
                 <label>Product Search:<br />
                 <input type="text" id="product" value={productVal} placeholder="Enter product here" onChange={(e) => setProductVal(e.target.value)}/><br />
                 </label>
-                <input type="submit" />
+                <input type="submit"/>
                 
             </form>
         </div>
     )
 }
 
-export default ProductSearch;
+export default ProductSearchEmp;

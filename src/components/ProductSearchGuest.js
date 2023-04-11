@@ -1,7 +1,6 @@
 import {useState} from "react"
 import {useNavigate} from "react-router-dom";
 import "../styles/ProductSearch.css"
-import ProductGuest from "./ProductGuest";
 
 
 function ProductSearchGuest() {
@@ -17,13 +16,6 @@ function ProductSearchGuest() {
 
     const checkProduct = (e) => {
         e.preventDefault();
-        /*
-        productVal is the value being searched
-        
-
-        Add product functionality here!!!!
-
-        */
         navToProduct();
         
     }
