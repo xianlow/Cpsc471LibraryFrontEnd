@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import apiServices from "../services/apiServices";
 import { useNavigate } from "react-router-dom";
+import apiServices from "../services/apiServices";
 import "../styles/Product.css";
 
 export default class ProductEmp extends Component {
@@ -22,34 +23,25 @@ export default class ProductEmp extends Component {
     }
 
     retrieveCustomer() {
-        /*
-        apiServices.getAll()
-          .then(response => {
-            this.setState({
-              products: response.data
-            });
+        apiServices.getOverdue(window.location.href.split("id=")[1]).then(response =>{
             console.log(response.data);
-          })
-          .catch(e => {
+            this.setState({
+                overdue: response.data
+            });
+            
+        }).catch(e =>{
             console.log(e);
-          });
-          */
-        this.setState({
-            overdue:[{
-                "title" : "theTitle",
-                "author" : "theAut",
-                "overduefee" : "$100"
-            }],
-            pickUpDates : [{
-                "author" : "theaut",
-                "title" : "the title",
-                "date" : "day1"  
-            },{
-                "author" : "autgh",
-                "title" : "title",
-                "date" : "day2"
-            }]
-        })
+        });
+        apiServices.getPickupDates(window.location.href.split("id=")[1]).then(response =>{
+            console.log(response.data);
+            this.setState({
+                pickUpDates: response.data
+            });
+            
+        }).catch(e =>{
+            console.log(e);
+        });
+        
     }
 
     refreshList() {
@@ -87,11 +79,8 @@ export default class ProductEmp extends Component {
                                     <div class="customer_overdue">
                                         <h3>{OverdueList.title}</h3>
                                     </div>
-                                    <div class="book_author">
-                                        <p>{OverdueList.author}</p>
-                                    </div>
-                                    <div class="overdue_price">
-                                        <p>{OverdueList.overduefee}</p>
+                                    <div class="overdue_fee">
+                                        <p>{OverdueList.overDueFee}</p>
                                     </div>
                                 </div>
                             </div>
@@ -104,15 +93,14 @@ export default class ProductEmp extends Component {
 
                             <div class="movies_content">
                                 <div class="movies_text_container">
+                                <div class="current_status">
+                                        <h3>{pickUpDatesList.title}</h3>
+                                    </div>
                                     <div class="movies_title">
-                                        <h3>{pickUpDatesList.date}</h3>
+                                        <p>{pickUpDatesList.pickupDate}</p>
                                     </div>
-                                    <div class="movies_director">
-                                        <p>{pickUpDatesList.author}</p>
-                                    </div>
-                                    <div class="current_status">
-                                        <p>{pickUpDatesList.title}</p>
-                                    </div>
+
+                                    
                                 </div>
                             </div>
                         </div>

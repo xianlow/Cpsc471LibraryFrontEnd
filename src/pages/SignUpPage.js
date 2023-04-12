@@ -1,5 +1,6 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
+import apiServices from "../services/apiServices";
 import "../styles/SignUpPage.css";
 
 
@@ -10,15 +11,15 @@ function SignUp() {
     }
 
     const sendToDB = () => {
-        const username = document.getElementById("userName").value;
-        //Check if customer id is issued and used this will be hard coded for now!!!!!!
-
-        if(!username.localeCompare(1234)){
-            alert("Id is already in use");
-            return false;
+        const name = document.getElementById("name").value;
+        const phoneNum = document.getElementById("phoneNum").value;
+        const state = {
+            "phonenum": phoneNum,
+            "name": name
         }
+        apiServices.newCustomer(state);
 
-        alert("You have successfully signed up")
+        alert("You have successfully signed up");
         navToHome();
     }
 
@@ -33,8 +34,10 @@ function SignUp() {
             }
             <div className = "signup">
             <form onSubmit={sendToDB}>
-                <label htmlFor="userName">User ID:</label><br />
-                <input type="text" id="userName" placeholder="Enter a unique user ID" name="userName" required /><br />
+                <label htmlFor="name">Name:</label><br />
+                <input type="text" id="name" placeholder="Enter your name" name="name" required /><br />
+                <label htmlFor="phoneNum">Phone number:</label><br />
+                <input type="text" id="phoneNum" placeholder="Enter you phone number" name="phoneNum" required /><br />
                 <input type="submit" value="Submit"  />
             </form>
             </div>

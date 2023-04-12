@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import apiServices from "../services/apiServices";
+import apiServices from "../services/apiServices";
 import { useNavigate } from "react-router-dom";
 import "../styles/Product.css";
 
@@ -13,7 +13,7 @@ export default class ProductEmp extends Component {
             currentProduct: null,
             currentIndex: -1
         };
-        
+
     }
 
     componentDidMount() {
@@ -21,30 +21,16 @@ export default class ProductEmp extends Component {
     }
 
     retrievePickupDates() {
-        /*
-        apiServices.getAll()
-          .then(response => {
-            this.setState({
-              products: response.data
-            });
+
+        apiServices.getPickupDates(localStorage.getItem("userID")).then(response => {
             console.log(response.data);
-          })
-          .catch(e => {
+            this.setState({
+                pickUpDates: response.data
+            });
+
+        }).catch(e => {
             console.log(e);
-          });
-          */
-        this.setState({
-            
-            pickUpDates : [{
-                "author" : "theaut",
-                "title" : "the title",
-                "date" : "day1"  
-            },{
-                "author" : "autgh",
-                "title" : "title",
-                "date" : "day2"
-            }]
-        })
+        });
     }
 
     refreshList() {
@@ -54,27 +40,15 @@ export default class ProductEmp extends Component {
             currentIndex: -1
         });
     }
-    /*
-      removeAllPosts() {
-        apiServices.deleteAll()
-          .then(response => {
-            console.log(response.data);
-            this.refreshList();
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      }
-    */
 
     render() {
-        const {pickUpDates} = this.state;
+        const { pickUpDates } = this.state;
 
         return (
 
             <div className="list-group">
-                
-                    <h1>Pickup Dates</h1>
+
+                <h1>Pickup Dates</h1>
                 {pickUpDates &&
                     pickUpDates.map((pickUpDatesList) => (
                         <div className="movies">
@@ -82,13 +56,10 @@ export default class ProductEmp extends Component {
                             <div class="movies_content">
                                 <div class="movies_text_container">
                                     <div class="movies_title">
-                                        <h3>{pickUpDatesList.date}</h3>
+                                        <h3>{pickUpDatesList.title}</h3>
                                     </div>
                                     <div class="movies_director">
-                                        <p>{pickUpDatesList.author}</p>
-                                    </div>
-                                    <div class="current_status">
-                                        <p>{pickUpDatesList.title}</p>
+                                        <p>{pickUpDatesList.pickupDate}</p>
                                     </div>
                                 </div>
                             </div>

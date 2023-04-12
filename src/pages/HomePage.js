@@ -7,7 +7,7 @@ import CustomerPage from "./CustomerPage"
 import Logout from "../components/LogOutButton"
 import "../styles/HomePage.css"
 function Home() {
-    const loggedInUser = localStorage.getItem("userID");
+    const loggedInUser = localStorage.getItem("userJob");
 
     const navigate = useNavigate();
     const navToLogin = () => {
@@ -21,8 +21,7 @@ function Home() {
         localStorage.clear();
     }
     */
-
-    if (loggedInUser === '"admin"') {
+    if (loggedInUser === "admin") {
 
         return (
             <div className="Admin-Page">
@@ -32,7 +31,7 @@ function Home() {
                 </div>
             </div>
         )
-    } else if (loggedInUser === '"emp"') {
+    } else if (loggedInUser === "emp") {
         return (
             <div className="Employee-Page">
                 <div>
@@ -41,7 +40,7 @@ function Home() {
                 </div>
             </div>
         )
-    }else if (loggedInUser === '"regis"') {
+    }else if (loggedInUser === "user") {
         return (
             <div className="Customer-Page">
                 <div>

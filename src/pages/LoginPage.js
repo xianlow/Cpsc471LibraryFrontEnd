@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react"
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
-
+import axios from "axios";
 
 
 function Login() {
@@ -24,26 +24,28 @@ function Login() {
         e.preventDefault();
         //Send over userID here to check
         const user = {userID};
-        
-        
-
-        if(!userID.localeCompare("admin")) {
+        const response = await axios.post("http://localhost:8080/login", userID);
+        if(response.data.name != null && response.data){
+            setUser('user');
+            localStorage.setItem("userJob", "user");
+            localStorage.setItem("userID", JSON.stringify(response.data.custID));
+        }
+        else if(response.data.firstname == null && response.data) {
             setUser('admin');
-            localStorage.setItem("userID", JSON.stringify('admin'));
-        }else if(!userID.localeCompare("emp")){
+            localStorage.setItem("userJob", "admin");
+            localStorage.setItem("userID", JSON.stringify(response.data.ID));
+        }else if(response.data.firstname != null && response.data){
             setUser('emp');
-            localStorage.setItem("userID", JSON.stringify('emp'));
-        }else if(!userID.localeCompare("regis")){
-            setUser('regis');
-            localStorage.setItem("userID", JSON.stringify('regis'));
+            localStorage.setItem("userJob", "emp");
+            localStorage.setItem("userID", JSON.stringify(response.data.ID));
         }else{
             alert("No id associated");
         }
         
         
     };
-
-    if(user === "admin" || user === "emp" || user === "regis"){
+    
+    if(localStorage.getItem("userJob") != null){
         navToLogin();
     }
     // if User correct, check password. if Script checks for existences of users, just needs to overrride one flag

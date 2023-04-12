@@ -10,7 +10,7 @@ function ProductSearch() {
     const navToProduct = () => {
         navigate({
             pathname: './productregis',
-            search: `?${productVal}`
+            search: `?id=${productVal}`
         });
 
     }

@@ -9,7 +9,7 @@ function ProductSearchGuest() {
     const navToProduct = () => {
         navigate({
             pathname: './product',
-            search: `?${productVal}`
+            search: `?id=${productVal}`
         });
 
     }

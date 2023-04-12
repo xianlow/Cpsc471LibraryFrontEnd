@@ -10,7 +10,7 @@ function CustomerSearch() {
     const navToCustomer = () => {
         navigate({
             pathname: './customer',
-            search: `?${customerId}`
+            search: `?id=${customerId}`
         });
 
     }

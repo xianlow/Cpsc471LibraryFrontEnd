@@ -5,10 +5,15 @@ import ProductSearch from "../components/ProductSearch"
 function EmployeePage() {
     const navigate = useNavigate();
     const navToCheckOverdue = () => {
-        navigate('./overdue');
+        navigate({pathname: './overdue',
+                search: `?id=${localStorage.getItem("userID")}`
+            });
     }
     const navToCheckPickUp = () => {
-        navigate("./checkpickup")
+        navigate({
+            pathname: "./checkpickup",
+            search: `?id=${localStorage.getItem("userID")}`
+        })
     }
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import apiServices from "../services/apiServices";
 import { useNavigate } from "react-router-dom";
+import apiServices from "../services/apiServices";
 import "../styles/Product.css";
 
 export default class ProductEmp extends Component {
@@ -21,25 +22,16 @@ export default class ProductEmp extends Component {
     }
 
     retrieveOverdue() {
-        /*
-        apiServices.getAll()
-          .then(response => {
-            this.setState({
-              products: response.data
-            });
+        
+        apiServices.getOverdue(localStorage.getItem("userID")).then(response =>{
             console.log(response.data);
-          })
-          .catch(e => {
+            this.setState({
+                overdue: response.data
+            });
+            
+        }).catch(e =>{
             console.log(e);
-          });
-          */
-        this.setState({
-            overdue:[{
-                "title" : "theTitle",
-                "author" : "theAut",
-                "overduefee" : "$100"
-            }]
-        })
+        });
     }
 
     refreshList() {
@@ -49,18 +41,6 @@ export default class ProductEmp extends Component {
             currentIndex: -1
         });
     }
-    /*
-      removeAllPosts() {
-        apiServices.deleteAll()
-          .then(response => {
-            console.log(response.data);
-            this.refreshList();
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      }
-    */
 
     render() {
         const { overdue} = this.state;
@@ -68,7 +48,7 @@ export default class ProductEmp extends Component {
         return (
 
             <div className="list-group">
-                <h1>Overdue dates and pricing</h1>
+                <h1>Overdue products and pricing</h1>
                 {overdue &&
                     overdue.map((OverdueList) => (
                         <div className="customersearch">
@@ -77,11 +57,8 @@ export default class ProductEmp extends Component {
                                     <div class="customer_overdue">
                                         <h3>{OverdueList.title}</h3>
                                     </div>
-                                    <div class="book_author">
-                                        <p>{OverdueList.author}</p>
-                                    </div>
                                     <div class="overdue_price">
-                                        <p>{OverdueList.overduefee}</p>
+                                        <p>{OverdueList.overDueFee}</p>
                                     </div>
                                 </div>
                             </div>
