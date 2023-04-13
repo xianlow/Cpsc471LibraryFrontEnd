@@ -17,29 +17,33 @@ function SignUp() {
             "phonenum": phoneNum,
             "name": name
         }
-        apiServices.newCustomer(state);
+        apiServices.newCustomer(state).then(response => {
+            alert("You have successfully signed up and your unique id is " + response.data.custID);
+        })
+            .catch(e => {
+                console.log(e);
+            });
 
-        alert("You have successfully signed up");
         navToHome();
     }
 
 
     // if User correct, check password. if Script checks for existences of users, just needs to overrride one flag
     return (
-        <div className = "signupbase">
+        <div className="signupbase">
             {
-            //<ProductSearch/>
-            
-            //<NewsFeed />
+                //<ProductSearch/>
+
+                //<NewsFeed />
             }
-            <div className = "signup">
-            <form onSubmit={sendToDB}>
-                <label htmlFor="name">Name:</label><br />
-                <input type="text" id="name" placeholder="Enter your name" name="name" required /><br />
-                <label htmlFor="phoneNum">Phone number:</label><br />
-                <input type="text" id="phoneNum" placeholder="Enter you phone number" name="phoneNum" required /><br />
-                <input type="submit" value="Submit"  />
-            </form>
+            <div className="signup">
+                <form onSubmit={sendToDB}>
+                    <label htmlFor="name">Name:</label><br />
+                    <input type="text" id="name" placeholder="Enter your name" name="name" required /><br />
+                    <label htmlFor="phoneNum">Phone number:</label><br />
+                    <input type="text" id="phoneNum" placeholder="Enter you phone number" name="phoneNum" required /><br />
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         </div>
     )

@@ -21,8 +21,11 @@ export default class ProductEmp extends Component {
         this.retrieveProducts();
     }
 
-    updateStatus(event) {
-        event.preventDefault();
+    updateStatus() {
+        apiServices.returnProduct(window.location.href.split("id=")[1]);
+        alert("Product has been returned");
+        window.location.href = "http://localhost:8081/"
+
     }
 
 
@@ -41,6 +44,7 @@ export default class ProductEmp extends Component {
 
     }
 
+
     refreshList() {
         this.retrieveProducts();
         this.setState({
@@ -48,18 +52,6 @@ export default class ProductEmp extends Component {
             currentIndex: -1
         });
     }
-    /*
-      removeAllPosts() {
-        apiServices.deleteAll()
-          .then(response => {
-            console.log(response.data);
-            this.refreshList();
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      }
-    */
 
     render() {
         const { product } = this.state;
@@ -85,12 +77,10 @@ export default class ProductEmp extends Component {
                                     <div class="current_status">
                                         <p>{ProductList.status}</p>
                                     </div>
-                                    <form onSubmit={this.updateStatus}>
+                                    
+                                    <button type="submit" disabled={ProductList.status === "Available"} onClick={this.updateStatus}> Return product</button>
 
-                                        <input type="text" placeholder="Enter product here" onChange={this.handleUpdate} /><br />
-                                        <input type="submit" />
-
-                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>

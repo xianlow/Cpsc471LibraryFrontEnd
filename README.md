@@ -1,9 +1,22 @@
-# App Work on details
-Update status needs to be worked on on the employee/admin side
+# Getting Started with library project
 
-Pay overdue needs to be worked on
+To run this project, we will be using react as the front end. If needed instructions on how to operate react look below for further instructions.
 
-CreateNewProduct needs to use the db so we can add items into the database
+For this project, we have some hard coded in values that will have to be changed manually in the sql file. Values in there are used for testing purposes and both sides are built to accomodate those values. This also means that some customers already have over due products. This means that some products will bug out if we use those hard coded values. For example if a customer tries to book out product number 1, there will be two people who booked out the product according to the database which can lead to issues. So when running the program, always book out products that you have made yourself. 
+
+Next, admin will be hardcoded into the database since we are not making a page to create admins/employees.
+
+To search for products, you will have to search using the product id. Anything other than that will show you a blank screen.
+
+Finally, paying overdue fees only change the overduefee to "paid". If we are adding implementations of a fully fledged paying system, we be modifying it to fit to make it work. 
+
+# Hard coded values inside the database
+## customerID 1 will be the admin
+## cutomerID 2-3 will be employees
+## customerID 101-102 will be customers
+## Book inside db has id 1-2 and is "checked out"
+## Movie inside db has id 101 and is "checked out"
+## Journal inside db has id 201 and is "checked out"
 
 # Getting Started with Create React App
 

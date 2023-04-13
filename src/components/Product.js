@@ -11,11 +11,14 @@ export default class Product extends Component {
     super(props);
     this.retrieveProducts = this.retrieveProducts.bind(this);
     this.refreshList = this.refreshList.bind(this);
-
     this.state = {
       product: [],
       currentProduct: null,
-      currentIndex: -1
+      currentIndex: -1,
+      ids: [{
+        "prodId": window.location.href.split("id=")[1],
+        "custId": localStorage.getItem("userID")
+      }]
     };
   }
 
@@ -54,7 +57,7 @@ export default class Product extends Component {
       message: "Are you sure you want to book this product?",
       buttons: [{
         label: "Yes",
-        onClick: () => apiServices.bookProduct(window.location.href.split("id=")[1]) && alert("You have booked this product") && window.location.replace("http://localhost:8081/"),
+        onClick: () => apiServices.bookProduct(this.state.ids) && alert("You have booked this product"),
         onMouseUp: () => window.location.href = "http://localhost:8081/"
       },
       {
@@ -86,7 +89,8 @@ export default class Product extends Component {
                   <div class="book_director">
                     <p>{ProductList.director}</p>
                   </div>
-                  <button onClick={this.confirm}>Confirm reservation</button>
+                  
+                  <button disabled={ProductList.status === "Unavailable"} onClick={this.confirm}>Confirm reservation</button>
                 </div>
               </div>
 

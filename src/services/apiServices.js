@@ -16,16 +16,31 @@ class apiServices {
       id: theID
     }});
   }
+  payOverdue(theID){
+    return http.put('/overdue/pay', theID);
+  }
   getPickupDates(theID){
     return http.get('/checkpickup', {params : {
       id: theID
     }});
   }
-  bookProduct(theID){
-    return http.put('/productregis', theID);
+  bookProduct(ids){
+    return http.put('/productregis', ids);
+  }
+  returnProduct(theID){
+    return http.put('/productemp/productsearch', theID);
   }
   newCustomer(data){
     return http.put('/signup', data);
+  }
+  createBook(data){
+    return http.put('/create/book', data);
+  }
+  createJournal(data){
+    return http.put('/create/journal', data);
+  }
+  createMovie(data){
+    return http.put('/create/movie', data);
   }
   // get(id) {
   //   return http.get(`/test/${id}`);

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import apiServices from "../services/apiServices";
 import "../styles/Product.css";
 
-export default class ProductEmp extends Component {
+export default class Overdue extends Component {
     constructor(props) {
         super(props);
         this.retrieveOverdue = this.retrieveOverdue.bind(this);
@@ -12,7 +12,7 @@ export default class ProductEmp extends Component {
         this.state = {
             overdue: [],
             currentProduct: null,
-            currentIndex: -1
+            currentIndex: -1,
         };
         
     }
@@ -33,7 +33,11 @@ export default class ProductEmp extends Component {
             console.log(e);
         });
     }
-
+    moveToPayment(id){
+        window.location.href = "http://localhost:8081/overdue/pay";
+        apiServices.payOverdue(id);
+        window.location.href = "http://localhost:8081/overdue";
+    }
     refreshList() {
         this.retrieveOverdue();
         this.setState({
@@ -58,8 +62,11 @@ export default class ProductEmp extends Component {
                                         <h3>{OverdueList.title}</h3>
                                     </div>
                                     <div class="overdue_price">
-                                        <p>{OverdueList.overDueFee}</p>
+                                        <p>{OverdueList.overDueFee }</p>
+                                        {OverdueList !="Nothing" && OverdueList.overDueFee != "Paid" && 
+                                        <button type="submit" onClick={() => this.moveToPayment(OverdueList.productID) }>Click here to pay off overdue fee </button>}
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

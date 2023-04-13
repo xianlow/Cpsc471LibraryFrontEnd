@@ -10,6 +10,10 @@ import CustomerSearch from './components/CustomerSearch'
 import CustomerSearchAdmEmp from './components/CustomerSearchAdmEmp'
 import Overdue from './pages/OverduePage'
 import CheckPickUp from './pages/PickupDatesPage'
+import CreateNewProductPage from './pages/CreateNewProductPage'
+import CreateNewBook from './components/CreateNewBook'
+import CreateNewJournal from './components/CreateNewJournal'
+import CreateNewMovie from './components/CreateNewMovie'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -29,6 +33,10 @@ function App() {
           <Route path='/customersearch/customer' element={<CustomerSearchAdmEmp/>} />
           <Route path='/overdue' element={<Overdue/>} />
           <Route path='/checkpickup' element={<CheckPickUp/>} />
+          <Route path='/create' element={<CreateNewProductPage/>} />
+          <Route path='/create/book' element={<CreateNewBook/>} />
+          <Route path='/create/journal' element={<CreateNewJournal/>} />
+          <Route path='/create/movie' element={<CreateNewMovie/>} />
             {
                   //<Route exact path='/adminpage' element={<AdminPage/>}/>
                   }
