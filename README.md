@@ -1,6 +1,6 @@
 # Getting Started with library project
 
-To run this project, we will be using react as the front end. If needed instructions on how to operate react look below for further instructions. Also make sure to install npm to run this project. Simply download node and itll come alongside npm with this link here [Download Node for NPM](https://nodejs.org/en/download).
+To run this project, we will be using react as the front end. If needed instructions on how to operate react look below for further instructions. Also make sure to install npm to run this project. Simply download node and itll come alongside npm with this link here [Download Node for NPM](https://nodejs.org/en/download). Sometimes all scripts are not installed, so do npm install at the start just in case.
 
 For this project, we have some hard coded in values that will have to be changed manually in the sql file. Values in there are used for testing purposes and both sides are built to accomodate those values. This also means that some customers already have over due products. This means that some products will bug out if we use those hard coded values. For example if a customer tries to book out product number 1, there will be two people who booked out the product according to the database which can lead to issues. So when running the program, always book out products that you have made yourself. 
 
